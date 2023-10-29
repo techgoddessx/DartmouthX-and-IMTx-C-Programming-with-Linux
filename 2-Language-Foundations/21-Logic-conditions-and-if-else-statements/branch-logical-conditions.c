@@ -16,5 +16,11 @@ int main(void){
 	}else{
 		printf("You are not in the labor force\n");
 	}
+	/* another way is 
+	 * if(age >= 18 && !(age >= 65)){
+        printf("You are in the labor force\n");
+    }else{
+        printf("You are not in the labor force\n");
+    } */ 
 	return 0;
 }
