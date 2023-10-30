@@ -10,14 +10,14 @@ int main(void){
 	double totalweight = 0.0;
 
 	int i;
-
+	// Calculate the target weight for each boxcar
 	for(i =0; i < numofcars; i++){
 		scanf("%lf",&carweight[i]);
 		totalweight = totalweight + carweight[i];
 	}
 
 	double targetweight = totalweight / numofcars;
-	
+	// Calculate and display the weight adjustments
 	for(i =0; i < numofcars; i++){
 		double output = targetweight - carweight[i];
 		printf("%.1lf\n",output);
