@@ -1,4 +1,7 @@
 #include <stdio.h>
+
+// this program prints all odd numbers between 0 and the target
+
 int main(void) 
 {
     int target;
