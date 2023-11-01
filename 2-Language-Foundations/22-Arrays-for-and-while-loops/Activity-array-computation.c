@@ -1,26 +1,38 @@
 #include <stdio.h>
 
-int main(void){
-	//The program should read in the number of ingredients (up to a maximum of 10 ingredients)
-	// then for each ingredient the price per pound.
-	// Finally your program should read the weight necessary for the recipe (for each ingredient in the same order)
-	// Your program should calculate the total cost of these purchases, then display it with 6 decimal places.
-	int numofing;
-	scanf("%d\n",&numofing);
-	int i;
-	double priceperpound[10];
-	double recipeweight[10];
-	double totalcost = 0;
-	for(i=0;i<numofing;i++){
-		scanf("%lf",&priceperpound[i]);
-	}
-	for(i=0;i<numofing;i++){
-		scanf("%lf",&recipeweight[i]);	
-	}
-	for(i=0;i<numofing;i++){
-		totalcost = totalcost + (priceperpound[i] * recipeweight[i]);
-	}
-	printf("%.6lf\n",totalcost);
-	return 0;
+int main(void) {
+    // The program should read in the number of ingredients
+    // (up to a maximum of 10 ingredients),
+    int n;
+    printf("Enter the number of elements in the array: \n");
+    scanf("%d",&n);
+    // then for each ingredient the price per pound.
+    printf("Enter for each ingredient the price per pound: \n");
+    double ppp[10];
+    double pp;
+    for(int i = 0; i < n; i++)
+    {
+        scanf("%lf",&pp);
+        ppp[i] = pp;
+    }
+    // your program should read the weight necessary for the recipe
+    // (for each ingredient in the same order).
+    printf("Enter for each ingredient the weight necessary for the recipe: \n");
+    double weight[10];
+    double weigh;
+    for(int i = 0; i < n; i++)
+    {
+        scanf("%lf",&weigh);
+        weight[i] = weigh;
+    }
+    printf("the total cost of these purchases:");
+    double cost = 0;
+    for(int i = 0; i < n; i++)
+    {
+      cost = cost + (weight[i]*ppp[i]);
+    }
+    printf("%lf\n",cost);
+
+
 }
 
