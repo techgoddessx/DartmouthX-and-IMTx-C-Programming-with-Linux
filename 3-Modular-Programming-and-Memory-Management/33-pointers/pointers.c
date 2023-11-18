@@ -8,7 +8,7 @@ int main()
 	char c = 'r';
 	
 	int * addressofA = &a; // get the address of a and put it in the variable addressofA
-	printf("address of a: %p\n", addressofA);
+	printf("address of a: %p\n", addressofA); // %p contains the address
 	
 	double * addressofD = &d;
 	printf("address of d: %p\n", addressofD);
