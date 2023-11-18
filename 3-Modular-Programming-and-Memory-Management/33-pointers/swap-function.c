@@ -8,6 +8,7 @@ int main() {
      printf("%d %d\n",a,b);
     return 0;
 }
+// we need pointers to swap values 
 void swap(int * a, int * b){
     int tmp = * a;
     * a = * b;
