@@ -1,20 +1,24 @@
 #include <stdio.h>
-#include <stdlib.h>
-struct student{
-	char fn[30];
-	char ln[30];
+struct student {
+	char fn[10];
+	char ln[10];
 	int age;
 	double grade;
 };
+void readData(struct student *ds);
+void printData(struct student name);
 int main(void){
-	struct student num1;
-	scanf("%s",num1.fn);
-	scanf("%s",num1.ln);
-	scanf("%d %lf",&num1.age,&num1.grade);
-	
-	printf("%s %s %d %.1lf%%\n",num1.fn,num1.ln,num1.age,num1.grade);
-
-	return 0;
+	struct student myname;
+	readData(&myname);
+	printData(myname);
 }
-
-
+void readData(struct student *ds){
+	printf("2s 1i 1d: ");
+	scanf("%s",(*ds).fn);
+	scanf("%s",(*ds).ln);
+	scanf("%d",&(*ds).age);
+	scanf("%lf",&(*ds).grade);
+}
+void printData(struct student name){
+	printf("%s %s\n%d %.1lf",name.fn,name.ln,name.age,name.grade);
+}
