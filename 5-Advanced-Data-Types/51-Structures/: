@@ -8,3 +8,4 @@ struct student{
 int main(void){
 	struct student me = {"fatimazahraa","abbari",22,100};
 	printf("%s %s is %d and has a grade of %lf%%",me.firstname,me.lastname,me.age,me.grade);
+}
