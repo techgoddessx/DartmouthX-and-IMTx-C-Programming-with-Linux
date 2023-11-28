@@ -1,23 +1,32 @@
 #include <stdio.h>
+#include <stdlib.h>
 struct point{
 	int x;
 	int y;
 };
-void readpt(struct point *pt);
-void printpt(struct point pt);
+void reads(struct point *);
+void printds(struct point *,int );
 int main(void){
-	struct point z[3];
-	for(int i = 0; i < 3; i++){
-		readpt(&z[i]);
+	struct point * poly;
+	int vertices;
+	printf("how many vertices? \n");
+	scanf("%d",&vertices);
+	poly = (struct point *) malloc(vertices*sizeof(struct point));
+	for (int i = 0; i < vertices; i++){
+		reads(&poly[i]);
 	}
-	for(int i = 0; i < 3; i++){
-                printpt(z[i]);
-        }
+	printds(&poly[0],vertices);
 	return 0;
 }
-void readpt(struct point *pt){
-	scanf("%d %d",&pt->x,&pt->y);
+void reads(struct point *ptr){
+	printf("x: ");
+	scanf("%d",&ptr->x);
+	printf("y: ");
+        scanf("%d",&ptr->y);
 }
-void printpt(struct point pt){
-	printf("%d,%d\n",pt.x,pt.y);
+void printds(struct point *ptr,int vertices){
+	for(int i = 0; i < vertices; i++){
+		printf("%d,%d\n",ptr[i].x,ptr[i].y);
+	}
 }
+
