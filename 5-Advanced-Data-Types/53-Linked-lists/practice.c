@@ -1,58 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
-struct point {
-	int x;
-	int y;
-	struct point * next;
+
+struct digit {
+	int dig;
+	struct digit * next;
 };
-struct point * allocatememory(int, int);
-struct point * append(struct point *, struct point *);
-void print(struct point *);
+struct digit * createdigit(int);
+struct digit * append(struct digit *end,struct digit *newptr);
 int main(void){
-	// struct point *polygon; // address of polygon
-	struct point * start, * end, * storedvalues;
-	printf("how many points ? ");
-	int num;
-	scanf("%d",&num);
-	int x,y;
-	for (int i = 0; i < num; i++){
-		printf("x: ");
-		scanf("%d",&x);
-		printf("y: ");
-                scanf("%d",&y);
-		storedvalues = allocatememory(x,y); // function // storedvalues has the address of the stored values aka points
-		if (i == 0){
-			start = end = storedvalues;
-		} else {
-			end = append(end,storedvalues); // function // here comes the linked lists
-		}
-	}
-	print(start);
-	return 0;
+	struct digit * start,* end,*newptr;
+	int number = 1, number2 = 2;
+	newptr = createdigit(number);
+	start = end = newptr;
+	newptr = createdigit(number2);
+	end = append(end,newptr);
 }
-struct point * allocatememory(int a, int b){
-	struct point * address;
-	address = (struct point *)malloc(sizeof(struct point));
-	address->x = a;
-	address->y = b;
-	address->next = NULL;
-	return address;
+struct digit * createdigit(int num){
+	struct digit * ptr;
+	ptr = (struct digit *) malloc(sizeof(struct digit));
+	ptr->dig = num;
+	ptr->next = NULL;
+	return ptr;
 }
-struct point * append(struct point * nextv, struct point * storedvalues){
-	nextv->next = storedvalues;
-	return (nextv->next);
+struct digit * append(struct digit *end,struct digit *newptr){
+	end->next = newptr;
+	end = newptr;
+	return end;
 }
-void print(struct point * start){
-	struct point * newaddress;
-	newaddress = start;
-	while(newaddress != NULL){
-		printf("(%d,%d)",newaddress->x,newaddress->y);
-		newaddress = newaddress->next;
-	}
-}
-
-
 	
-
-
-
