@@ -9,10 +9,18 @@ struct digit *append(struct digit *, struct digit *);
 struct digit *readnumber();
 void print(struct digit *);
 void freeds(struct digit *);
+struct digit * searchfor(struct digit *, int);
 int main(void){
-	struct digit * start;
+	struct digit * start, * ptr;
 	start = readnumber();
 	print(start);
+	int sn = 1;
+	ptr = searchfor(start,sn);
+	if(ptr != NULL){
+		printf("the number you asked for was found\n");
+	}else{
+		printf("the number you asked for was not found\n");
+	}
 	freeds(start);
 	return 0;
 }
@@ -62,5 +70,12 @@ void freeds(struct digit *start){
 		end = tmp;
 	}
 }
-
+struct digit * searchfor(struct digit * start, int num){
+	struct digit * last;
+	last = start;
+	while((last != NULL) && (last->n != num)){
+		last = last->next;
+	}
+	return last;
+}
 
