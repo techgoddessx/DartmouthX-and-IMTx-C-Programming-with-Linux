@@ -1,102 +1,90 @@
 #include <stdio.h>
 #include <stdlib.h>
 struct digit {
-	int n;
+	int num;
 	struct digit * next;
 };
-struct digit *creatememory(int);
-struct digit *append(struct digit *, struct digit *);
-struct digit *readnumber();
+struct digit * readnumber();
+struct digit * createdigit(int d);
+struct digit * append(struct digit *, struct digit *);
 void print(struct digit *);
-void freeds(struct digit *);
-struct digit * searchfor(struct digit *, int);
-struct digit * reverselist(struct digit *);
+struct digit * sortit(struct digit *);
+struct digit * sortit2(struct digit *start, struct digit *newptr);
 int main(void){
-	struct digit * start, * ptr, * backwards;
+	struct digit *start,*sorted;
 	start = readnumber();
 	print(start);
-	int sn = 1;
-	ptr = searchfor(start,sn);
-	if(ptr != NULL){
-		printf("the number you asked for was found\n");
-	}else{
-		printf("the number you asked for was not found\n");
+	sorted = sortit(start);
+	printf("\n");
+	print(sorted);
+
+}
+struct digit * atfront(struct digit *start, struct digit *newptr){
+	newptr->next = start;
+	return newptr;
+}
+struct digit * sortit2(struct digit *start, struct digit *newptr){
+	struct digit * prev, * ptr;
+	ptr = start;
+	prev = NULL;
+	while((ptr != NULL) && (ptr->num < newptr->num)){
+		prev = ptr;
+		ptr = ptr->next;
 	}
-	backwards = reverselist(start);
-	print(backwards);
-	freeds(backwards);
-	freeds(start);
-	return 0;
+	if (prev == NULL){
+		start = atfront(start,newptr);
+	}else{
+		prev->next = newptr;
+		newptr->next = ptr;
+	}
+	return start;
 }
-struct digit *creatememory(int num){
-	struct digit * newaddy;
-	newaddy = (struct digit *) malloc(sizeof(struct digit));
-	newaddy->n = num;
-	newaddy->next = NULL;
-	return newaddy;
-}
-struct digit * append(struct digit * end, struct digit * newptr){
-	end->next = newptr;
-	end = newptr;
+struct digit * sortit(struct digit * start){
+	struct digit *sortedstart = NULL;
+	struct digit *newptr;
+	if (sortedstart == NULL){
+		sortedstart = createdigit(start->num);
+		start = start->next;
+	}
+	while(start != NULL){
+		newptr = createdigit(start->num);
+		sortedstart = sortit2(sortedstart,newptr);
+		start = start->next;
+	}
+	return sortedstart;
 }
 struct digit * readnumber(){
-	char c;
 	int d;
-	struct digit * start,* newptr, *end;
-	start = NULL;
+	char c;
+	struct digit * start = NULL;
+	struct digit * newptr, * end;
 	scanf("%c",&c);
 	while(c != '\n'){
 		d = c - 48;
-		newptr = creatememory(d);
-		if(start == NULL){
+		newptr = createdigit(d);
+		if (start == NULL){
 			start = end = newptr;
-		}else {
-			end = append(end,newptr);
+		} else {
+			end = append(end, newptr);
 		}
 		scanf("%c",&c);
 	}
 	return start;
 }
-void print(struct digit * ptr){
-	struct digit * end;
-	end = ptr;
-	while(end != NULL){
-	       printf("(%p : %d)\n",end,end->n);
-	       end = end->next;
-	}
+struct digit * createdigit(int d){
+	struct digit *ptr;
+	ptr = (struct digit *) malloc(sizeof(struct digit));
+	ptr->num = d;
+	ptr->next = NULL;
+	return ptr;
 }
-void freeds(struct digit *start){
-	struct digit * end, *tmp;
-	tmp = end = start;
-	while(end != NULL){
-		tmp = end->next;
-		free(end);
-		end = tmp;
-	}
+struct digit * append(struct digit * start, struct digit * newptr){
+	start->next = newptr;
+	return (start->next);
 }
-struct digit * searchfor(struct digit * start, int num){
-	struct digit * last;
-	last = start;
-	while((last != NULL) && (last->n != num)){
-		last = last->next;
+void print(struct digit * start){
+	while(start != NULL){
+		printf("(%p : %d)\n",start,start->num);
+		start = start->next;
 	}
-	return last;
-}
-struct digit * insertAtFront(struct digit * bstart, struct digit * newptr){
-	newptr->next = bstart;
-	return newptr;
-}
-struct digit * reverselist(struct digit * start){
-	struct digit * ptr, * bstart, * newdigit;
-	ptr = start;
-	if (start != NULL){
-		bstart = creatememory(start->n);
-		ptr = ptr->next;
-	}
-	while(ptr!=NULL){
-		newdigit = creatememory(ptr->n);
-		bstart = insertAtFront(bstart,newdigit);
-		ptr = ptr->next;
-	}
-	return bstart;
 }
