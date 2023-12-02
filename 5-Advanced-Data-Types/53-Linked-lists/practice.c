@@ -10,8 +10,9 @@ struct digit *readnumber();
 void print(struct digit *);
 void freeds(struct digit *);
 struct digit * searchfor(struct digit *, int);
+struct digit * reverselist(struct digit *);
 int main(void){
-	struct digit * start, * ptr;
+	struct digit * start, * ptr, * backwards;
 	start = readnumber();
 	print(start);
 	int sn = 1;
@@ -21,6 +22,9 @@ int main(void){
 	}else{
 		printf("the number you asked for was not found\n");
 	}
+	backwards = reverselist(start);
+	print(backwards);
+	freeds(backwards);
 	freeds(start);
 	return 0;
 }
@@ -78,4 +82,21 @@ struct digit * searchfor(struct digit * start, int num){
 	}
 	return last;
 }
-
+struct digit * insertAtFront(struct digit * bstart, struct digit * newptr){
+	newptr->next = bstart;
+	return newptr;
+}
+struct digit * reverselist(struct digit * start){
+	struct digit * ptr, * bstart, * newdigit;
+	ptr = start;
+	if (start != NULL){
+		bstart = creatememory(start->n);
+		ptr = ptr->next;
+	}
+	while(ptr!=NULL){
+		newdigit = creatememory(ptr->n);
+		bstart = insertAtFront(bstart,newdigit);
+		ptr = ptr->next;
+	}
+	return bstart;
+}
