@@ -15,8 +15,11 @@ void freeNumber(struct digit *);
 struct digit *readNumber(void); 
 int divisibleByThree(struct digit * start);
 int changeThrees(struct digit * start);
+int countRedun(struct digit * start);
+struct digit * insertAtFront(struct digit * start, struct digit * newptr);
+struct digit * insertIntoSorted(struct digit *start, struct digit *newDig);
+struct digit * sortedCopy(struct digit * start);
 int countRedun(struct digit *start);
-
 // Do not modify this main() function
 int main(void) {
     struct digit *start;
@@ -108,12 +111,59 @@ int changeThrees(struct digit * start) {
 }
 
 // Write your countRedun() function here
-int countRedun(struct digit *start){
-	struct digit * ptr = start;
-	int mylist[20];
-	while(ptr!=NULL){
-		mylist += ptr->num;
-		ptr = ptr->next;
-	}
-	return 0;
+struct digit * insertAtFront(struct digit * start, struct digit * newptr) {
+    newptr->next = start;
+    return(newptr);
+}
+
+struct digit * insertIntoSorted(struct digit *start, struct digit *newDig) {
+    struct digit *ptr = start;
+    struct digit *prev = NULL;
+    while ((ptr!=NULL) && (ptr->num < newDig->num)) {
+        prev = ptr;
+        ptr = ptr->next;
+    }
+    if (prev == NULL) {
+        start = insertAtFront(start, newDig);
+    } else {
+        prev->next = newDig;
+        newDig->next = ptr;
+    }
+    return(start);
+}
+
+struct digit * sortedCopy(struct digit * start) {
+    struct digit *ptr = start;
+    struct digit *sortedStart = NULL;
+    struct digit *newDigit;
+
+    if (start!=NULL) {
+        sortedStart = createDigit(start->num);
+        ptr = ptr->next;
+    }
+    while (ptr!=NULL) {
+        newDigit = createDigit(ptr->num);
+        sortedStart = insertIntoSorted(sortedStart, newDigit);
+        ptr = ptr->next;
+    }
+    return(sortedStart);
+}
+
+int countRedun(struct digit *start) {
+    struct digit *sortedStart = sortedCopy(start);
+    struct digit *ptr = sortedStart;
+    struct digit *nptr;
+
+    int redun = 0;
+
+    while (ptr != NULL && ptr->next != NULL) {
+        nptr = ptr->next;
+
+        if (ptr->num == nptr->num) {
+            redun += 1;
+        }
+
+        ptr = ptr->next;
+    }
+    return redun;
 }
