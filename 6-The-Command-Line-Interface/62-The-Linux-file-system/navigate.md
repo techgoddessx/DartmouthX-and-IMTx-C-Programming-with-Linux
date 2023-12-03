@@ -1,8 +1,5 @@
 # File System Navigation with Linux Commands
 
-## Introduction
-**REMI:** In this video, we navigate through the Linux file system using commands in the Linux command line. The first command we'll learn is `pwd` (print working directory), which shows the current working directory.
-
 ## Basic Commands
 - `pwd`: Prints the current working directory.
 - `ls`: Lists files and folders in the current directory.
@@ -48,6 +45,4 @@
 - Absolute paths always start with the root `/`.
 - Be cautious with relative paths; absolute paths are safer for programming.
 
-## Conclusion
-**REMI:** Now, you know how to navigate through the file system using Linux commands. Experiment with navigating on your own!
 
