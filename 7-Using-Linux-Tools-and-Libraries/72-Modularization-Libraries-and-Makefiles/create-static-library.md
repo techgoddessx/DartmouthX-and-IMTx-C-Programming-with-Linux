@@ -18,12 +18,16 @@ Alternatively, you can use:
 
 ## Static vs. Dynamic Libraries
 
-<p>Static libraries include actual function binaries in the executable, making it larger. Dynamic libraries (*.so in Linux) are linked at runtime and result in smaller executable files.<\p>
+Static libraries include actual function binaries in the executable, making it larger. Dynamic libraries (*.so in Linux) are linked at runtime and result in smaller executable files.
+
 ## Creating Dynamic Library
+
 To create a dynamic library, use the -shared flag:
   
 ``` gcc -shared -o libweather.so weatherstats.o ```
+
 ## Linking Dynamic Library
+
 Linking to a dynamic library requires setting the library path:
   
 ```bash
