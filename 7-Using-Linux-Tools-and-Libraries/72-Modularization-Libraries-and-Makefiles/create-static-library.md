@@ -18,7 +18,8 @@ Alternatively, you can use:
 
 ## Static vs. Dynamic Libraries
 
-Static libraries include actual function binaries in the executable, making it larger. Dynamic libraries (*.so in Linux) are linked at runtime and result in smaller executable files.
+- Static libraries include actual function binaries in the executable, making it larger. Dynamic libraries (*.so in Linux) are linked at runtime and result in smaller executable files because the executable only contains the name of the library, or a link to the library. At runtime, the library is only in existence in one location in memory,and your program links to it.So if multiple programs use the same library, there's only one copy of that library sitting in memory, so also less main memory is used in that case.
+- Static libraries have the extension .a (Linux) or .lib (Windows). while Dynamic libraries have the extension .so as in shared object (Linux) or .dll as in dynamic link library (Windows).
 
 ## Creating Dynamic Library
 
