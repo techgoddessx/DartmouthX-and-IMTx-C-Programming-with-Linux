@@ -5,19 +5,18 @@
 // and then the populations for each city one by one (also integers).
 
 int main(void){
-	int numofcities; // number of cities in a region 
-	scanf("%d",&numofcities);
-	int population[100]; // population of each city
-	int i;
-	int p10000 = 0;
-	for(i=0;i<numofcities;i++)
+	int n; // number of cities in a region 
+	scanf("%d",&n);
+	int population; // population of each city
+	int i,p;
+	for(i=0; i<n; i++)
 	{
-		scanf("%d",&population[i]);
-		if (population[i] > 10000)
+		scanf("%d",&population);
+		if (population > 10000)
 		{
-			p10000 = p10000 + 1;
+			p++;
 		}
 	}
-	printf("%d\n",p10000);
+	printf("%d\n",p);
 	return 0;
 }	
