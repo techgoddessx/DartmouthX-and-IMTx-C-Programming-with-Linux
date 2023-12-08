@@ -1,20 +1,14 @@
 #include <stdio.h>
-int main(void) {
-    int num_of_passengers;
-    double cost_of_gas;
-    double result;
-
-    scanf("%d %lf",&num_of_passengers,&cost_of_gas);
-    if (num_of_passengers)
-    {
-        result = (cost_of_gas+1.0) / (num_of_passengers+1);
-        printf("%.2lf",result);
-
+int main() {
+    int nbPassengers = 0;
+    double totalCost = 0.0;
+    scanf("%d %lf", &nbPassengers, &totalCost);
+    int alone = nbPassengers == 0;
+    if(alone){
+        printf("%.2lf", totalCost);
+    }else{
+        totalCost = totalCost + 1; //car pooling site fees
+        printf("%.2lf", totalCost/(nbPassengers+1));
     }
-    else
-    {
-         printf("%.2lf",cost_of_gas);
-    }
-
     return 0;
 }
