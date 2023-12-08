@@ -12,9 +12,11 @@ int main() {
 
 	int cost = 10 + 5 * TimeOfArrival; 
 
-	if (TimeOfArrival <= 8) {
+	if (TimeOfArrival <= 8) { // or you can use cost instead of TimeOfArrival if (cost < 53)
 	printf("%d\n",cost);	
 	}else{
 		printf("%d\n",53);
 	}
 }
+
+
