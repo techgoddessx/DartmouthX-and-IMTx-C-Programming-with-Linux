@@ -10,7 +10,7 @@ int main(void){
 		j++;
 	}
 	double maxgrade = array[0];
-	int class = 1;
+	int class = 0;
 
 	for(int i = 0; i < j; i++){
 		if(maxgrade < array[i]){
