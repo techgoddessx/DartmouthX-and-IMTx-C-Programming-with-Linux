@@ -28,9 +28,9 @@ void readDate(struct date *ptr){
 }
 void printDate(struct date val){
 	if (val.day <= 9 ) {
-		printf("%02d/%02d/%d",val.month,val.day,val.year);
+		printf("%02d/%02d/%d\n",val.month,val.day,val.year);
 	}else {
-		printf("%02d/%02d/%d",val.month,val.day,val.year);
+		printf("%02d/%02d/%d\n",val.month,val.day,val.year);
 	}
 }
 struct date advanceDay(struct date today){
@@ -60,5 +60,6 @@ struct date advanceDay(struct date today){
 		tomorrow.month = today.month;
 		tomorrow.year  = today.year;
 	}
+	return tomorrow;
 }
 		
